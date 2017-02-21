@@ -1,40 +1,42 @@
 import axios from 'axios';
 
-const API = {
-  root: 'http://clientside-api.herokuapp.com/apipie',
-  key: '845750dcd14d22ac05a36a8cd793f690',
-  GET_ALL: '/api/v1/listings',
-  GET_ONE: '/api/v1/listings/:id',
-  PUT: '/api/v1/listings/:id',
-  DELETE: '/api/v1/listings/:id',
-  POST: '/api/v1/listings'
-}
-
-axios.defaults.baseURL = API.root;
-axios.defaults.headers.common['Authorization'] = API.key;
+const instance = axios.create({
+  baseURL: 'http://clientside-api.herokuapp.com',
+  headers: {
+    'Authorization': '845750dcd14d22ac05a36a8cd793f690',
+    'Content-Type': 'application/vnd.api+json'
+  }
+});
 
 export default {
   //   User should be able to add new listings -- POST
     addListing: () => {
-      // return "ADD A LISTING"
-      axios.get(API.GET_ALL)
-      .then(res => { console.log(res) })
-      .catch(err => { console.log(err) })
+      return instance.post('/api/v1/listings')
+      .then(res => res.data )
+      .catch(err => err )
     },      
   //   User should be able to remove existing listings -- DELETE
-    removeListing: () => {
-      return "REMOVE LISTING"
+    removeListing: (id) => {
+      return instance.delete(`/api/v1/listing/${id}`)
+      .then(res => res.data )
+      .catch(err => err )
     },
   //   User should be able to edit an existing listing -- PUT
-    editListing: () => {
-      return "EDIT LISTING"
+    editListing: (id) => {
+      return instance.put(`/api/v1/listing/${id}`)
+      .then(res => res.data )
+      .catch(err => err )
     },
-  //   User should be able to view his/her own listings
-    getOneListing: () => {
-      return "GET ONE LISTING"
+  //   User should be able to view his/her own listings - GET
+    getOneListing: (id) => {
+      return instance.get(`/api/v1/listing/${id}`)
+      .then(res => res.data )
+      .catch(err => err )
     },
-  //   User should be able to view others' available listings
+  //   User should be able to view others' available listings - GET
     getAllListings: () => {
-      return "GET ALL LISTING"
+      return instance.get('/api/v1/listings')
+      .then(res => res.data )
+      .catch(err => err )
     }
 }
