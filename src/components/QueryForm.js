@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styles from '../styles/queryForm.css';
+import API from '../utils.js';
 
 class QueryForm extends Component {
   constructor(props) {
@@ -19,7 +20,14 @@ class QueryForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state.name, this.state.url)
+    API.addListing(this.state.name, this.state.url)
+    .then( res => {
+        this.setState({
+        name: '',
+        url: ''
+      })
+    })
+    .catch( err => { console.log(res) })
   }
 
   render() {

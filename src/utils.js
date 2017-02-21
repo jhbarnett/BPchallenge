@@ -10,8 +10,13 @@ const instance = axios.create({
 
 export default {
   //   User should be able to add new listings -- POST
-    addListing: () => {
-      return instance.post('/api/v1/listings')
+    addListing: (title, url) => {
+      const params = {
+        title: `data[attributes][title]=${title}`,
+        url: `data[attributes][url]=${url}`
+      }
+
+      return instance.post(`/api/v1/listings?${params.title}&${params.url}`)
       .then(res => res.data )
       .catch(err => err )
     },      
