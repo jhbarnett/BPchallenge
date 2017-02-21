@@ -12,9 +12,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   resolve: {
-    extensions: ['', '.js'],
-    modulesDirectories: ['node_modules', 'components']
-
+    extensions: ['', '.js']
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
