@@ -38,3 +38,6 @@ jspm_packages
 
 # compiled files
 build/*
+
+# Others
+.DS_Store

@@ -5,14 +5,16 @@ module.exports = {
   entry: [
     'webpack-dev-server/client?http://localhost:5000',
     'webpack/hot/dev-server',
-    './src/index'
+    path.join(__dirname + '/src/index')
   ],
   output: {
     path: path.resolve('build'),
     filename: 'bundle.js'
   },
   resolve: {
-    extensions: ['.js']
+    extensions: ['', '.js'],
+    modulesDirectories: ['node_modules', 'components']
+
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -28,7 +30,16 @@ module.exports = {
           {
             presets:['react']
           }
+      },
+      { test: /\.css$/, 
+        loaders: ['style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'] 
       }
     ]
+  },
+  postcss: () => {
+    return [
+      require('autoprefixer')
+    ];
   }
+
 };
