@@ -11,10 +11,14 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Listings</h1>
-        <QueryForm />
-        <ListArea />
+      <div className={styles.app}>
+        <h1 className={styles.title}>Listings</h1>
+        <div className={styles.queryForm}>
+          <QueryForm />
+        </div>
+        <div className={styles.listArea}>
+          <ListArea />
+        </div>
       </div>
     );
   }
