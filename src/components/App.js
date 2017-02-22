@@ -19,7 +19,6 @@ class App extends Component {
     this.fetchListings();
   }
 
-
   fetchListings() {
     API.getAllListings()
     .then( res => {
@@ -29,11 +28,9 @@ class App extends Component {
     });
   }
 
-
   updateListings() {
     this.fetchListings();
   }
-
 
   toggleSelection(e, id) {
     //avoids network request, desirable with small dataset
@@ -47,7 +44,6 @@ class App extends Component {
       this.setState({ selection: selection })
   }
 
-
   removeListing(e, id) {   
     API.deleteListing(id)
 
@@ -59,17 +55,15 @@ class App extends Component {
     this.setState({ listings: newList })
   }
 
-
   editListing(e) {
     this.setState({ editing: !this.state.editing })
   }
 
-
   render() {
     return (
       <div className={styles.app}>
-        <h1 className={styles.title}>Listings</h1>
-        <div className={styles.queryForm}>
+        <div className={styles.header}>
+          <h1>Listings</h1>
           <QueryForm 
             updateListings={this.updateListings.bind(this)}
           />
