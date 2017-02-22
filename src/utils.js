@@ -23,14 +23,14 @@ export default {
   },      
 
 //   User should be able to remove existing listings -- DELETE
-  removeListing: (id) => {
-    return instance.delete(`/api/v1/listing/${id}`)
+  deleteListing: (id) => {
+    return instance.delete(`/api/v1/listings/${id}`)
     .then(res => res.data )
     .catch(err => err );
   },
 
 //   User should be able to edit an existing listing -- PUT
-  editListing: (id, data) => {
+  editListing: (id, title, url) => {
     const params = {
       title: `data[attributes][title]=${title}`,
       url: `data[attributes][url]=${url}`
@@ -41,9 +41,9 @@ export default {
     .catch(err => err );
   },
 
-//   User should be able to view his/her own listings - GET
+//   User should be able to view a single listing - GET
   getOneListing: (id) => {
-    return instance.get(`/api/v1/listing/${id}`)
+    return instance.get(`/api/v1/listings/${id}`)
     .then(res => res.data.data )
     .catch(err => err );
   },

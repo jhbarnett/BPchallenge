@@ -19,6 +19,7 @@ class App extends Component {
     this.fetchListings();
   }
 
+
   fetchListings() {
     API.getAllListings()
     .then( res => {
@@ -28,9 +29,11 @@ class App extends Component {
     });
   }
 
+
   updateListings() {
     this.fetchListings();
   }
+
 
   toggleSelection(e, id) {
     //avoids network request, desirable with small dataset
@@ -44,15 +47,23 @@ class App extends Component {
       this.setState({ selection: selection })
   }
 
-  removeListing(e, id) {
-    console.log("remove: ", id)    
-    // API.deleteListing(id)
+
+  removeListing(e, id) {   
+    API.deleteListing(id)
+
+    const newList = 
+      this.state.listings.filter(listing => 
+        listing.id !== id
+      )
+
+    this.setState({ listings: newList })
   }
 
-  editListing(e, id, data) {
-    console.log("edit: ", id, " with: ", data)
-    // API.editListing(id, data)
+
+  editListing(e) {
+    this.setState({ editing: !this.state.editing })
   }
+
 
   render() {
     return (
@@ -64,11 +75,19 @@ class App extends Component {
           />
         </div>
         <div className={styles.listArea}>
-          <ListArea 
-            listings={this.state.listings} 
-            toggleSelection={this.toggleSelection.bind(this)} 
-            selection={this.state.selection}
-          />
+        { this.state.listings ? (
+            <ListArea 
+              listings={this.state.listings} 
+              toggleSelection={this.toggleSelection.bind(this)} 
+              selection={this.state.selection}
+              removeListing={this.removeListing.bind(this)}
+              editing={this.state.editing}
+              editListing={this.editListing.bind(this)}
+              />
+          ) : (
+            <div> Loading... </div>
+          )
+        }
         </div>
       </div>
     );
