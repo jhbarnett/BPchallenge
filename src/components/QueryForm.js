@@ -20,14 +20,19 @@ class QueryForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+
     API.addListing(this.state.name, this.state.url)
     .then( res => {
         this.setState({
         name: '',
         url: ''
-      })
+      })  
     })
-    .catch( err => { console.log(res) })
+    .catch( err => { console.log(err) })
+
+    //Calls function on parent element to update ListArea (see App.js)
+    //Alternatives include Redux & Event Bubbling
+    .then(() => this.props.updateListings());
   }
 
   render() {

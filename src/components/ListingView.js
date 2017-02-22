@@ -1,9 +1,11 @@
 import React from 'react';
 import styles from '../styles/listingView.css';
 
-const ListingView = (props) => {
+const ListingView = ({ title, url, id, toggleSelection }) => {
   return (
-    <h1>Hello ListingView</h1>
+    <div onClick={(e) => toggleSelection(e, id)}>
+      <h1>{title}</h1>
+    </div>
   )
 }
 
