@@ -75,7 +75,6 @@ class App extends Component {
               toggleSelection={this.toggleSelection.bind(this)} 
               selection={this.state.selection}
               removeListing={this.removeListing.bind(this)}
-              editing={this.state.editing}
               editListing={this.editListing.bind(this)}
               />
           ) : (

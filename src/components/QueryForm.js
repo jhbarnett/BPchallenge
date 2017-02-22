@@ -41,8 +41,13 @@ class QueryForm extends Component {
     return (
       <div className={styles.queryForm}>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <input value={this.state.name} onChange={this.handleChanges.bind(this)} name="name" type="text" placeholder="Property Title"></input>
-          <input value={this.state.url} onChange={this.handleChanges.bind(this)} name="url" type="text" placeholder="Property Url"></input>
+          <input value={this.state.name} onChange={this.handleChanges.bind(this)} 
+                 name="name" type="text" placeholder="Property Title"
+                 autoComplete="off" />
+          <input value={this.state.url} onChange={this.handleChanges.bind(this)} 
+                 name="url" type="text" placeholder="Property Url"
+                 autoComplete="off"
+                 />
           <button type='submit' value='Submit'>ADD</button>
         </form>
       </div>

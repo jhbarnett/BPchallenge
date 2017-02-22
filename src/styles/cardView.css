@@ -1,15 +1,79 @@
 .card {
+  align-self: flex-start;
   flex: 1;
   background-color: rgba(255, 255, 255, 0.75);
-  min-width: 20em;
-  min-height: 10em;
-  max-height: 20em;
+  min-width: 19em;
+  min-height: 1em;
   box-shadow: -3px -3px 1px 0px rgba(0, 0, 0, 0.3);
   transition: all .2s ease-in-out;
   margin: 1em;
+  padding: 0 1em 1em 1em;
+  color: rgb(18 , 121, 180);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .card:hover {
   background-color: rgba(255, 255, 255, 0.9);
   box-shadow: -3px -3px 5px 2px rgba(0, 0, 0, 0.2);
+}
+
+.card > div {
+  align-self: flex-end;
+  margin: .25em -.75em 0 0;
+}
+
+.card .edit {
+  border: none;
+  color: rgb(18 , 121, 180);
+  background-color: transparent;
+  float: right;
+  font-size: 1.5em;
+  margin: 0 .25em 0 0;
+  border-radius: 25%; 
+  outline: none;
+}
+
+.card .delete {
+  border: none;
+  float: right;
+  font-size: 1.5em;
+  color: rgb(18 , 121, 180);
+  background-color: transparent;
+  border-radius: 25%; 
+  outline: none;
+}
+
+.card .delete:hover {
+  background-color: rgb(18 , 121, 180);
+  color: white;
+}
+
+.card .edit:hover {
+  background-color: rgb(18 , 121, 180);
+  color: white;
+}
+
+.card > h1 {
+  padding-bottom: .5em;
+  border-bottom: 2px solid rgb(18 , 121, 180);
+  font-size: 2.5em;
+  width: 70%;
+  max-height: 30%;
+}
+
+.card > a {
+  color: rgb(18 , 121, 180);
+  text-decoration: none;
+  font-size: 1.5em; 
+  overflow-x: hidden;
+  overflow-y: scroll;
+  max-width: 100%;
+  padding-bottom: .5em;
+}
+
+.card > a:hover {
+  text-decoration: underline;
 }
