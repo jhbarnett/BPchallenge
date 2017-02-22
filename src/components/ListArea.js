@@ -16,7 +16,7 @@ const ListArea = ({ listings , toggleSelection, selection, removeListing, editLi
       ) 
     default:
       return (
-        <div className={styles.listContainer}>
+        <div>
           {
             listings.map((listing, i) =>
               <CardView 

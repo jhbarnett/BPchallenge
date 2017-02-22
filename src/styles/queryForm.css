@@ -1,0 +1,61 @@
+.queryForm {
+  display: flex;
+  align-items: flex-start;
+}
+
+.queryForm > form {
+  width: 100%;
+  display: flex;
+}
+
+.queryForm input[name=name] {
+  flex: 2;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.0);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.7);
+  font-size: 1.5em;
+  color: rgba(255, 255, 255, 0.7);
+  height: 2em;
+  margin: 1.5% 0 0 0;
+  outline: none;
+}
+
+.queryForm input[name=name]::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.queryForm input[name=url] {
+  flex: 2;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.0);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.7);
+  font-size: 1.5em;
+  color: rgba(255, 255, 255, 0.7);
+  height: 2em;
+  margin: 1.5% 0 0 2%;
+  outline: none;
+}
+
+.queryForm input[name=url]::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.queryForm button[type=submit] {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.7);
+  height: auto;
+  max-width: 5em;
+  border-radius: 50%;
+  margin: 0 2%;
+  border: none;
+  color: rgb(18 , 121, 180);
+  font-size: .75em;
+  font-weight: bold;
+  outline: none;
+}
+
+.queryForm button[type=submit]:hover {
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.7);
+  background-color: rgb(18 , 121, 180);
+}

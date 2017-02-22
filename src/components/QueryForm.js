@@ -20,28 +20,30 @@ class QueryForm extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    
+    if (this.state.name && this.state.url) {
+      API.addListing(this.state.name, this.state.url)
+      .then( res => {
+          this.setState({
+          name: '',
+          url: ''
+        })  
+      })
+      .catch( err => { console.log(err) })
 
-    API.addListing(this.state.name, this.state.url)
-    .then( res => {
-        this.setState({
-        name: '',
-        url: ''
-      })  
-    })
-    .catch( err => { console.log(err) })
-
-    //Calls function on parent element to update ListArea (see App.js)
-    //Alternatives include Redux & Event Bubbling
-    .then(() => this.props.updateListings());
+      //Calls function on parent element to update ListArea (see App.js)
+      //Alternatives include Redux & Event Bubbling
+      .then(() => this.props.updateListings());
+    }
   }
 
   render() {
     return (
-      <div>
+      <div className={styles.queryForm}>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <input value={this.state.name} onChange={this.handleChanges.bind(this)} name="name" type="text" placeholder="Name"></input>
-          <input value={this.state.url} onChange={this.handleChanges.bind(this)} name="url" type="text" placeholder="Url"></input>
-          <button type='submit' value='Submit'>Enter</button>
+          <input value={this.state.name} onChange={this.handleChanges.bind(this)} name="name" type="text" placeholder="Property Title"></input>
+          <input value={this.state.url} onChange={this.handleChanges.bind(this)} name="url" type="text" placeholder="Property Url"></input>
+          <button type='submit' value='Submit'>ADD</button>
         </form>
       </div>
     )
