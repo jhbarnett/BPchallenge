@@ -72,13 +72,17 @@ class App extends Component {
     return (
       <div className={styles.app}>
         <div className={styles.header}>
-          <h1>Listings</h1>
+          <h1>{
+            this.state.listings.length === 1 ?
+            (`${this.state.listings.length} Listing`) :
+            (`${this.state.listings.length || ''} Listings`)
+          }</h1>
           <QueryForm 
             updateListings={this.updateListings.bind(this)}
           />
         </div>
         <div className={styles.listArea}>
-        { this.state.listings ? (
+        { this.state.listings.length ? (
             <ListArea 
               listings={this.state.listings} 
               toggleEdit={this.toggleEdit.bind(this)} 
@@ -88,7 +92,7 @@ class App extends Component {
               editing={this.state.editing}
               />
           ) : (
-            <div> Loading... </div>
+            <div className={styles.listArea}><h3> ADD SOME PROPERTY LISTINGS </h3></div>
           )
         }
         </div>
