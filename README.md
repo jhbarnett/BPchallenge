@@ -1,9 +1,17 @@
-# BPchallenge
+# Code Challenge
 
 ##Getting Started
 ```
 npm install
+npm run build
 npm start
-Open http://localhost:5000
+open http://localhost:5000
 ```
 
+##Technologies
+
+###React
+
+###Webpack
+
+###Axios
