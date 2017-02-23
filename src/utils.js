@@ -19,14 +19,14 @@ export default {
 
     return instance.post(`/api/v1/listings?${params.title}&${params.url}`)
     .then(res => res.data )
-    .catch(err => err );
+    .catch(err => console.log(err));
   },      
 
 //   User should be able to remove existing listings -- DELETE
   deleteListing: (id) => {
     return instance.delete(`/api/v1/listings/${id}`)
     .then(res => res.data )
-    .catch(err => err );
+    .catch(err => console.log(err));
   },
 
 //   User should be able to edit an existing listing -- PUT
@@ -38,20 +38,20 @@ export default {
 
     return instance.put(`/api/v1/listings/${id}?${params.title}&${params.url}`)
     .then(res => res.data )
-    .catch(err => err );
+    .catch(err => console.log(err));
   },
 
 //   User should be able to view a single listing - GET
   getOneListing: (id) => {
     return instance.get(`/api/v1/listings/${id}`)
     .then(res => res.data.data )
-    .catch(err => err );
+    .catch(err => console.log(err));
   },
 
 //   User should be able to view others' available listings - GET
   getAllListings: () => {
     return instance.get('/api/v1/listings')
     .then(res => res.data.data )
-    .catch(err => err );
+    .catch(err => console.log(err));
   }
 }

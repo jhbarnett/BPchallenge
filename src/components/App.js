@@ -46,7 +46,6 @@ class App extends Component {
 
   removeListing(e, id) {   
     API.deleteListing(id)
-    .catch(err => console.log(err));
 
     const newList = this.state.listings.filter(listing => listing.id !== id);
 
@@ -58,8 +57,6 @@ class App extends Component {
     const newUrl = document.getElementById("newUrl").value;
 
     API.editListing(id, newTitle, newUrl)
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
 
     //Revise local listing object for immediate UI change
     this.state.editing.attributes.title = newTitle;
