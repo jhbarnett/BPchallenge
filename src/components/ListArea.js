@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styles from '../styles/listArea.css';
 import CardView from './CardView';
 
-const ListArea = ({ listings , toggleSelection, selection, removeListing, editListing }) => {
+const ListArea = ({ listings , toggleEdit, selection, removeListing, submitEdit, editing }) => {
   return (
     <div className={styles.cardView}>
       {
@@ -12,9 +12,10 @@ const ListArea = ({ listings , toggleSelection, selection, removeListing, editLi
             title={listing.attributes.title}
             url={listing.attributes.url}
             id={listing.id}
-            toggleSelection={toggleSelection}
+            editing={editing}
+            toggleEdit={toggleEdit}
             removeListing={removeListing}
-            editListing={editListing}
+            submitEdit={submitEdit}
           /> )
       }
     </div>

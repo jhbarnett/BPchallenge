@@ -11,52 +11,61 @@ class App extends Component {
     super(props)
     this.state = {
       listings: [],
-      selection: false
+      editing: false
     }
   }
 
   componentDidMount() {
-    this.fetchListings();
-  }
-
-  fetchListings() {
-    API.getAllListings()
-    .then( res => {
-      this.setState({
-        listings: res
-      })
-    });
+    this.updateListings();
   }
 
   updateListings() {
-    this.fetchListings();
+    API.getAllListings()
+    .then( res => this.setState({ listings: res }));
   }
 
-  toggleSelection(e, id) {
-    //avoids network request, desirable with small dataset
-    const selection = 
-      this.state.listings.filter(listing => 
-        listing.id === id
-      )[0]
-    
-    this.state.selection ?  
-      this.setState({ selection: false }) :
-      this.setState({ selection: selection })
+  toggleEdit(e, id) {
+    const parentCard = e.target.parentElement.parentElement;
+
+    const listing = this.state.listings.filter(l => l.id === id)[0];
+
+    if (this.state.editing.id === id || !this.state.editing) {
+      if (this.state.editing) {
+        parentCard.style.transform = ''
+        parentCard.style.backgroundColor = '';
+        this.setState({ editing: false });
+      } else {
+        parentCard.style.transform = 'rotateX(360deg)';
+        parentCard.style.backgroundColor = 'white';
+        this.setState({ editing: listing });
+      }
+    } else {
+      alert("Finish editing that other card first!")
+    }
   }
 
   removeListing(e, id) {   
     API.deleteListing(id)
+    .catch(err => console.log(err));
 
-    const newList = 
-      this.state.listings.filter(listing => 
-        listing.id !== id
-      )
+    const newList = this.state.listings.filter(listing => listing.id !== id);
 
-    this.setState({ listings: newList })
+    this.setState({ listings: newList });
   }
 
-  editListing(e) {
-    this.setState({ editing: !this.state.editing })
+  submitEdit(e, id) {
+    const newTitle = document.getElementById("newTitle").value;
+    const newUrl = document.getElementById("newUrl").value;
+
+    API.editListing(id, newTitle, newUrl)
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
+
+    //Revise local listing object for immediate UI change
+    this.state.editing.attributes.title = newTitle;
+    this.state.editing.attributes.url = newUrl;
+
+    this.toggleEdit(e, id);
   }
 
   render() {
@@ -72,10 +81,11 @@ class App extends Component {
         { this.state.listings ? (
             <ListArea 
               listings={this.state.listings} 
-              toggleSelection={this.toggleSelection.bind(this)} 
+              toggleEdit={this.toggleEdit.bind(this)} 
               selection={this.state.selection}
               removeListing={this.removeListing.bind(this)}
-              editListing={this.editListing.bind(this)}
+              submitEdit={this.submitEdit.bind(this)}
+              editing={this.state.editing}
               />
           ) : (
             <div> Loading... </div>
